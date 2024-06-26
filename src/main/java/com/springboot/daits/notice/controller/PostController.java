@@ -62,12 +62,38 @@ public class PostController {
     // 단일 게시글 조회
     @GetMapping("/api/post/{id}")
     public PostResponse getPost(@PathVariable Long id) {
+
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new PostNotFoundException("게시글이 존재하지 않습니다."));
 
         PostResponse postResponse = PostResponse.of(post);
 
         return postResponse;
+    }
+
+    // 단일 게시글 수정
+    @PutMapping("/api/post/{id}")
+    public void updatePost(@PathVariable Long id, @RequestBody @Valid PostInput postInput, Errors errors) {
+
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new PostNotFoundException("게시글이 존재하지 않습니다."));
+
+        post.setCategory(postInput.getCategory());
+        post.setTitle(postInput.getTitle());
+        post.setContents(postInput.getContents());
+        post.setUpdatedAt(LocalDateTime.now());
+
+        postRepository.save(post);
+    }
+
+    // 단일 게시글 삭제
+    @DeleteMapping("/api/post/{id}")
+    public void deletePost(@PathVariable Long id) {
+
+        Post post = postRepository.findById(id)
+                        .orElseThrow(() -> new PostNotFoundException("게시글이 존재하지 않습ㄴ디ㅏ."));
+
+        postRepository.delete(post);
     }
 
 }

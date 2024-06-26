@@ -1,0 +1,25 @@
+###
+POST http://localhost:8080/api/post
+Content-Type: application/json
+
+{
+  "category": "IT",
+  "title": "제목1",
+  "contents": "내용1"
+}
+
+###
+GET http://localhost:8080/api/post/1
+
+###
+PUT http://localhost:8080/api/post/1
+Content-Type: application/json
+
+{
+  "category" : "게임",
+  "title" : "제목2",
+  "contents": "내용2"
+}
+
+###
+DELETE http://localhost:8080/api/post/1
