@@ -3,13 +3,13 @@ POST http://localhost:8080/api/post
 Content-Type: application/json
 
 {
-  "category": "",
+  "category": "IT",
   "title": "제목1",
   "contents": "내용1"
 }
 
 ###
-GET http://localhost:8080/api/post/2
+GET http://localhost:8080/api/post/1
 
 ###
 PUT http://localhost:8080/api/post/1
@@ -23,3 +23,36 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:8080/api/post/1
+
+
+// User
+###
+POST http://localhost:8080/api/user/signup
+Content-Type: application/json
+
+{
+  "email": "test@naver.com",
+  "userName": "test",
+  "password": "1234",
+  "passwordConfirm": "1234"
+}
+
+###
+GET http://localhost:8080/api/user/1
+
+###
+POST http://localhost:8080/api/user/signin
+Content-Type: application/json
+
+{
+  "email": "test@naver.com",
+  "password": "1234"
+}
+
+###
+PUT http://localhost:8080/api/user/update
+Content-Type: application/json
+
+{
+  "userName": "test1"
+}

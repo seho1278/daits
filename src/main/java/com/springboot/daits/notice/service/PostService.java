@@ -4,16 +4,14 @@ import com.springboot.daits.notice.entity.Post;
 import com.springboot.daits.notice.exception.PostNotFoundException;
 import com.springboot.daits.notice.model.PostInput;
 import com.springboot.daits.notice.model.PostResponse;
-import com.springboot.daits.notice.model.ResponseError;
+import com.springboot.daits.response.ResponseError;
 import com.springboot.daits.notice.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -61,6 +59,10 @@ public class PostService {
     // 게시글 조회
     public PostResponse getPost(Long id) {
         Post post = checkPost(id);
+
+        // 게시글 조회 시 view
+        post.setView(post.getView() + 1);
+        postRepository.save(post);
 
         return PostResponse.of(post);
     }

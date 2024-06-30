@@ -1,4 +1,4 @@
-package com.springboot.daits.notice.model;
+package com.springboot.daits.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
