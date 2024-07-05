@@ -2,10 +2,7 @@ package com.springboot.daits.User.controller;
 
 import com.springboot.daits.User.entity.User;
 import com.springboot.daits.User.exception.UserNotFoundException;
-import com.springboot.daits.User.model.UserLoginInput;
-import com.springboot.daits.User.model.UserResponse;
-import com.springboot.daits.User.model.UserInput;
-import com.springboot.daits.User.model.UserUpdateInput;
+import com.springboot.daits.User.model.*;
 import com.springboot.daits.User.repository.UserRepository;
 import com.springboot.daits.User.service.UserService;
 import com.springboot.daits.response.ResponseError;
@@ -56,7 +53,14 @@ public class UserController {
 
         return userService.updateUser(userUpdateInput);
     }
-    
+
+    // 비밀번호 수정
+    @PatchMapping("/update/password")
+    public ResponseEntity<?> updateUserPassword(@RequestBody @Valid UserInputPassword userInputPassword, Errors errors) {
+
+        return userService.updateUserPassword(userInputPassword, errors);
+    }
+
     // 회원탈퇴
     @DeleteMapping("/delete")
     public ResponseEntity<?> deleteUser(@RequestBody @Valid UserInput userInput) {
