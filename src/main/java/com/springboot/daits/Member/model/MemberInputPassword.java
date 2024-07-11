@@ -1,4 +1,4 @@
-package com.springboot.daits.User.model;
+package com.springboot.daits.Member.model;
 
 import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.NotBlank;
@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UserInputPassword {
+public class MemberInputPassword {
 
     @NotBlank(message = "이메일을 입력해주세요")
     private String email;

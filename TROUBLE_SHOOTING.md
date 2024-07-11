@@ -22,13 +22,13 @@
          ```java
          <수정전>
          public ResponseEntity<?> updateUserPassword(@RequestBody @Valid
-                                                UserLoginInput userLoginInput,
-                                                UserInputPassword userInputPassword,
+                                                UserLoginInput memberLoginInput,
+                                                UserInputPassword memberInputPassword,
                                                 Errors errors)
          
          <수정후>
          public ResponseEntity<?> updateUserPassword(@RequestBody @Valid
-                                                UserInputPassword userInputPassword,
+                                                UserInputPassword memberInputPassword,
                                                 Errors errors)
          
          ```

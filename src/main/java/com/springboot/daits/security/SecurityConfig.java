@@ -24,7 +24,11 @@ public class SecurityConfig {
         // 모든 경로에 대한 액세스 허용
         http
             .csrf().disable()
-            .authorizeRequests(auth -> auth.anyRequest().permitAll());
+            .authorizeRequests(auth -> auth
+                    .requestMatchers("/", "/**")
+                    .permitAll()
+                    .anyRequest().authenticated()
+            );
 
         return http.build();
     }
