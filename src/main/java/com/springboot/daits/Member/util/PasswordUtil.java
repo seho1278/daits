@@ -1,4 +1,4 @@
-package com.springboot.daits.User.util;
+package com.springboot.daits.Member.util;
 
 import lombok.experimental.UtilityClass;
 import org.springframework.security.crypto.bcrypt.BCrypt;

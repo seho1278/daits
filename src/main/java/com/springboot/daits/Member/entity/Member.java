@@ -1,4 +1,4 @@
-package com.springboot.daits.User.entity;
+package com.springboot.daits.Member.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User {
+public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

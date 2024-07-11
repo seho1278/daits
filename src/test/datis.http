@@ -27,7 +27,7 @@ DELETE http://localhost:8080/api/post/1
 
 // User
 ###
-POST http://localhost:8080/api/user/signup
+POST http://localhost:8080/api/member/signup
 Content-Type: application/json
 
 {
@@ -38,7 +38,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:8080/api/user
+GET http://localhost:8080/api/member
 Content-Type: application/json
 
 {
@@ -46,7 +46,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:8080/api/user/signin
+POST http://localhost:8080/api/member/signin
 Content-Type: application/json
 
 {
@@ -55,7 +55,7 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:8080/api/user/update
+PUT http://localhost:8080/api/member/update
 Content-Type: application/json
 
 {
@@ -64,7 +64,7 @@ Content-Type: application/json
 }
 
 ###
-PATCH http://localhost:8080/api/user/update/password
+PATCH http://localhost:8080/api/member/update/password
 Content-Type: application/json
 
 {

@@ -1,16 +1,18 @@
-package com.springboot.daits.User.service;
+package com.springboot.daits.Member.service.impl;
 
-import com.springboot.daits.User.entity.User;
-import com.springboot.daits.User.exception.PasswordNotMatchException;
-import com.springboot.daits.User.exception.UserNotFoundException;
-import com.springboot.daits.User.model.*;
-import com.springboot.daits.User.repository.UserRepository;
-import com.springboot.daits.User.util.PasswordUtil;
+import com.springboot.daits.Member.entity.Member;
+import com.springboot.daits.Member.exception.PasswordNotMatchException;
+import com.springboot.daits.Member.exception.UserNotFoundException;
+import com.springboot.daits.Member.model.*;
+import com.springboot.daits.Member.repository.MemberRepository;
+import com.springboot.daits.Member.service.MemberService;
+import com.springboot.daits.Member.util.PasswordUtil;
 import com.springboot.daits.response.ResponseError;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
@@ -21,29 +23,29 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class UserService {
+public class MemberServiceImpl implements MemberService {
 
-    private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
 
     // 유저 여부 확인
-    public User checkUser(String email) {
-        User user = userRepository.findByEmail(email)
+    public Member checkUser(String email) {
+        Member member = memberRepository.findByEmail(email)
                 .orElseThrow(() -> new UserNotFoundException("등록된 사용자가 아닙니다."));
 
-        return user;
+        return member;
     }
 
     // 유저 정보 조회
-    public UserResponse getUser(String email) {
-        User user = checkUser(email);
+    public MemberResponse getUser(String email) {
+        Member member = checkUser(email);
 
-        UserResponse userResponse = UserResponse.of(user);
+        MemberResponse memberResponse = MemberResponse.of(member);
 
-        return userResponse;
+        return memberResponse;
     }
 
     // 회원가입
-    public ResponseEntity<?> signUp(UserInput userInput, Errors errors) {
+    public ResponseEntity<?> signUp(MemberInput memberInput, Errors errors) {
         List<ResponseError> responseErrorList = new ArrayList<>();
         if (errors.hasErrors()) {
             errors.getAllErrors().stream().forEach((e) -> {
@@ -53,51 +55,53 @@ public class UserService {
             return new ResponseEntity<>(responseErrorList, HttpStatus.BAD_REQUEST);
         }
 
-        if (!userInput.isPasswordConfirmValid()) {
+        if (!memberInput.isPasswordConfirmValid()) {
             responseErrorList.add(new ResponseError("passwordConfirm", "비밀번호가 일치하지 않습니다."));
             return new ResponseEntity<>(responseErrorList, HttpStatus.BAD_REQUEST);
         }
-        
-        // password 암호화
-        String encryptPassword = PasswordUtil.getEncryptPassword(userInput.getPassword());
 
-        User user = User.builder()
-                .email(userInput.getEmail())
-                .userName(userInput.getUserName())
+        // password 암호화
+        String encryptPassword = PasswordUtil.getEncryptPassword(memberInput.getPassword());
+
+        Member member = Member.builder()
+                .email(memberInput.getEmail())
+                .userName(memberInput.getUserName())
                 .password(encryptPassword)
                 .createdAt(LocalDateTime.now())
                 .build();
 
-        userRepository.save(user);
+        memberRepository.save(member);
 
         return ResponseEntity.ok().build();
     }
 
     // 로그인
-    public ResponseEntity<?> signIn(UserLoginInput userLoginInput) {
+    public ResponseEntity<?> signIn(MemberLoginInput memberLoginInput) {
         // 유저 정보가 있는지 확인
-        User user = checkUser(userLoginInput.getEmail());
+        Member member = checkUser(memberLoginInput.getEmail());
 
         // 입력한 비밀번호와 암호화된 비밀번호가 매칭되는지 확인
-        if (!PasswordUtil.equalsPassword(userLoginInput.getPassword(), user.getPassword())) {
+        if (!PasswordUtil.equalsPassword(memberLoginInput.getPassword(), member.getPassword())) {
             throw new PasswordNotMatchException("비밀번호가 일치하지 않습니다.");
         }
+
+
 
         return ResponseEntity.ok().body("로그인 성공");
     }
 
     // 회원정보 수정
-    public ResponseEntity<?> updateUser(UserUpdateInput userUpdateInput) {
-        User user = checkUser(userUpdateInput.getEmail());
-        user.setUserName(userUpdateInput.getUserName());
+    public ResponseEntity<?> updateUser(MemberUpdateInput memberUpdateInput) {
+        Member member = checkUser(memberUpdateInput.getEmail());
+        member.setUserName(memberUpdateInput.getUserName());
 
-        userRepository.save(user);
+        memberRepository.save(member);
 
         return ResponseEntity.ok().build();
     }
-    
+
     // 비밀번호 변경
-    public ResponseEntity<?> updateUserPassword(UserInputPassword userInputPassword, Errors errors) {
+    public ResponseEntity<?> updateUserPassword(MemberInputPassword memberInputPassword, Errors errors) {
 
         List<ResponseError> responseErrorList = new ArrayList<>();
 
@@ -110,34 +114,39 @@ public class UserService {
         }
 
         // 유저 정보가 있는지 확인
-        User user = checkUser(userInputPassword.getEmail());
+        Member member = checkUser(memberInputPassword.getEmail());
 
         // 입력한 비밀번호와 암호화된 비밀번호가 매칭되는지 확인
-        if (!PasswordUtil.equalsPassword(userInputPassword.getPassword(), user.getPassword())) {
+        if (!PasswordUtil.equalsPassword(memberInputPassword.getPassword(), member.getPassword())) {
             throw new PasswordNotMatchException("비밀번호가 일치하지 않습니다.");
         }
 
         // 새로운 비밀번호와 비밀번호 확인이 일치하는지 확인
-        if (!userInputPassword.isNewPasswordConfirmValid()) {
+        if (!memberInputPassword.isNewPasswordConfirmValid()) {
             responseErrorList.add(new ResponseError("newPasswordConfirm", "비밀번호가 일치하지 않습니다."));
             return new ResponseEntity<>(responseErrorList, HttpStatus.BAD_REQUEST);
         }
 
-        String encryptPassword = PasswordUtil.getEncryptPassword(userInputPassword.getNewPassword());
+        String encryptPassword = PasswordUtil.getEncryptPassword(memberInputPassword.getNewPassword());
 
-        user.setPassword(encryptPassword);
-        userRepository.save(user);
+        member.setPassword(encryptPassword);
+        memberRepository.save(member);
 
         return ResponseEntity.ok().build();
     }
 
 
     // 회원탈퇴
-    public ResponseEntity<?> deleteUser(UserInput userInput) {
-        User user = checkUser(userInput.getEmail());
+    public ResponseEntity<?> deleteUser(MemberInput memberInput) {
+        Member member = checkUser(memberInput.getEmail());
 
-        userRepository.delete(user);
+        memberRepository.delete(member);
 
         return ResponseEntity.ok().body("회원탈퇴 처리가 정상적으로 처리되었습니다.");
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return null;
     }
 }

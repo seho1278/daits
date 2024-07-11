@@ -1,4 +1,4 @@
-package com.springboot.daits.User.exception;
+package com.springboot.daits.Member.exception;
 
 public class UserNotFoundException extends RuntimeException {
     public UserNotFoundException(String s) {
