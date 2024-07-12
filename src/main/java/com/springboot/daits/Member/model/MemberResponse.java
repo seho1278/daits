@@ -12,15 +12,13 @@ import lombok.NoArgsConstructor;
 @Builder
 public class MemberResponse {
 
-    private Long id;
     private String email;
     private String userName;
 
     public static MemberResponse of(Member member) {
         return MemberResponse.builder()
-                .id(member.getId())
                 .email(member.getEmail())
-                .userName(member.getUserName())
+                .userName(member.getUsername())
                 .build();
     }
 

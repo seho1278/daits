@@ -51,7 +51,7 @@ Content-Type: application/json
 
 {
   "email": "test@naver.com",
-  "password": "12345"
+  "password": "1234"
 }
 
 ###
