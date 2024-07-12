@@ -1,11 +1,9 @@
 package com.springboot.daits.Member.controller;
 
 import com.springboot.daits.Member.model.*;
-import com.springboot.daits.Member.repository.MemberRepository;
 import com.springboot.daits.Member.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;

@@ -4,6 +4,7 @@ import com.springboot.daits.Member.model.*;
 import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 
 public interface MemberService extends UserDetailsService {
