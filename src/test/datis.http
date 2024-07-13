@@ -12,7 +12,7 @@ Content-Type: application/json
 GET http://localhost:8080/api/post/1
 
 ###
-PUT http://localhost:8080/api/post/1
+PUT http://localhost:8080/api/post/update/1
 Content-Type: application/json
 
 {
@@ -22,7 +22,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:8080/api/post/1
+DELETE http://localhost:8080/api/post/delete/1
 
 
 // User
@@ -51,7 +51,7 @@ Content-Type: application/json
 
 {
   "email": "test@naver.com",
-  "password": "1234"
+  "password": "12345"
 }
 
 ###
