@@ -10,11 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/post")
@@ -38,14 +33,14 @@ public class PostController {
     }
 
     // 단일 게시글 수정
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<?> updatePost(@PathVariable Long id, @RequestBody @Valid PostInput postInput) {
 
         return postService.updatePost(id, postInput);
     }
 
     // 단일 게시글 삭제
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deletePost(@PathVariable Long id) {
 
         return postService.deletePost(id);

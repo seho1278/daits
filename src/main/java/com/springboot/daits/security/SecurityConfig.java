@@ -18,6 +18,17 @@ public class SecurityConfig {
 
     private final JwtTokenProvider jwtTokenProvider;
 
+    public static final String[] PUBLIC_URL = {
+            "/",
+            "/**",
+            "/api/member/update",
+            "/api/member/update/password",
+            "/api/member/delete",
+            "/api/post",
+            "/api/post/update",
+            "/api/post/delete",
+    };
+
     /**
      * WebSecurityConfigurerAdapter가 Spring Security 5.7.0-M2 부터 deprecated
      * component-based security configuration으로 전환
@@ -32,7 +43,7 @@ public class SecurityConfig {
             .csrf().disable()
 
             .authorizeRequests(auth -> auth
-                    .requestMatchers("/", "/**")
+                    .requestMatchers(PUBLIC_URL)
                     .permitAll()
                     .anyRequest().authenticated()
                     .and().addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider),
