@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
@@ -20,13 +21,8 @@ public class SecurityConfig {
 
     public static final String[] PUBLIC_URL = {
             "/",
-            "/**",
-            "/api/member/update",
-            "/api/member/update/password",
-            "/api/member/delete",
-            "/api/post",
-            "/api/post/update",
-            "/api/post/delete",
+            "/api/member/signin",
+            "/api/post/",
     };
 
     /**
@@ -40,7 +36,10 @@ public class SecurityConfig {
 
         // 모든 경로에 대한 액세스 허용
         http
+            .httpBasic().disable()
             .csrf().disable()
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .and()
 
             .authorizeRequests(auth -> auth
                     .requestMatchers(PUBLIC_URL)
@@ -51,6 +50,9 @@ public class SecurityConfig {
             );
 
         return http.build();
+    }
+
+    public void configure(WebSecurity web) {
     }
 
 }

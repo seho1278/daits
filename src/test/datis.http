@@ -1,6 +1,7 @@
 ###
 POST http://localhost:8080/api/post
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MjA5Nzc0MDIsImV4cCI6MTcyMDk4MTAwMn0.ECgnLauD8jO_QIlXPqJ3kcz3SHOKm_-iVwVShjeHIMc
 
 {
   "category": "IT",

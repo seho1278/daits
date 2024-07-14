@@ -19,7 +19,7 @@ public class PostController {
     private final PostService postService;
 
     // 게시글 생성
-    @PostMapping("")
+    @PostMapping("/create")
     public ResponseEntity<?> createPost(@RequestBody @Valid PostInput postInput, Errors errors) {
 
         return postService.createPost(postInput, errors);
