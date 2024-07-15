@@ -1,5 +1,6 @@
 package com.springboot.daits.notice.service.impl;
 
+import com.springboot.daits.Member.entity.Member;
 import com.springboot.daits.notice.entity.Post;
 import com.springboot.daits.notice.exception.PostNotFoundException;
 import com.springboot.daits.notice.model.PostInput;
@@ -10,7 +11,10 @@ import com.springboot.daits.notice.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 
@@ -23,6 +27,14 @@ import java.util.List;
 public class PostServiceImpl implements PostService {
 
     private final PostRepository postRepository;
+
+    // 인증된 사용자 Authentication 객체 가져오기
+    public Member getMemberToken() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Member member = (Member) authentication.getPrincipal();
+
+        return member;
+    }
 
     // 게시글 확인
     public Post checkPost(Long id) {
@@ -44,6 +56,9 @@ public class PostServiceImpl implements PostService {
             return new ResponseEntity<>(responseErrorList, HttpStatus.BAD_REQUEST);
         }
 
+        // 현재 인증된 사용자 가져오기
+        Member member = getMemberToken();
+
         Post post = Post.builder()
                 .category(postInput.getCategory())
                 .title(postInput.getTitle())
@@ -51,6 +66,7 @@ public class PostServiceImpl implements PostService {
                 .view(0)
                 .recommendation(0)
                 .createdAt(LocalDateTime.now())
+                .member(member)
                 .build();
 
         postRepository.save(post);
@@ -72,9 +88,15 @@ public class PostServiceImpl implements PostService {
 
     // 게시글 수정
     @Override
+    @Transactional
     public ResponseEntity<?> updatePost(Long id, PostInput postInput) {
 
         Post post = checkPost(id);
+        Member member = getMemberToken();
+
+        if (!post.getMember().getEmail().equals(member.getEmail())) {
+            throw new RuntimeException("작성자 본인만 수정 가능합니다.");
+        }
 
         post.setCategory(postInput.getCategory());
         post.setTitle(postInput.getTitle());
@@ -91,6 +113,11 @@ public class PostServiceImpl implements PostService {
     public ResponseEntity<?> deletePost(Long id) {
 
         Post post = checkPost(id);
+        Member member = getMemberToken();
+
+        if (!post.getMember().getEmail().equals(member.getEmail())) {
+            throw new RuntimeException("작성자 본인만 삭제가 가능합니다.");
+        }
 
         postRepository.delete(post);
 
