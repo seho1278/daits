@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -21,8 +22,9 @@ public class SecurityConfig {
 
     public static final String[] PUBLIC_URL = {
             "/",
+            "/api/member/signup",
             "/api/member/signin",
-            "/api/post/",
+            "/api/post/{id}",
     };
 
     /**
@@ -36,18 +38,14 @@ public class SecurityConfig {
 
         // 모든 경로에 대한 액세스 허용
         http
-            .httpBasic().disable()
-            .csrf().disable()
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and()
+            .csrf(AbstractHttpConfigurer::disable)
+            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
             .authorizeRequests(auth -> auth
-                    .requestMatchers(PUBLIC_URL)
-                    .permitAll()
+                    .requestMatchers(PUBLIC_URL).permitAll()
                     .anyRequest().authenticated()
-                    .and().addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider),
-                            UsernamePasswordAuthenticationFilter.class)
-            );
+            )
+            .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

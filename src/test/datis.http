@@ -1,29 +1,32 @@
 ###
-POST http://localhost:8080/api/post
+POST http://localhost:8080/api/post/create
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MjA5Nzc0MDIsImV4cCI6MTcyMDk4MTAwMn0.ECgnLauD8jO_QIlXPqJ3kcz3SHOKm_-iVwVShjeHIMc
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MjEwNzI4NDgsImV4cCI6MTcyMTA3NjQ0OH0.Kuo5jhahRnfzN-Bu84Sd-vkSZAMlZZP_10iCrMhb8jI
 
 {
   "category": "IT",
-  "title": "제목1",
-  "contents": "내용1"
+  "title": "제목3",
+  "contents": "내용3"
 }
 
 ###
 GET http://localhost:8080/api/post/1
 
 ###
-PUT http://localhost:8080/api/post/update/1
+PUT http://localhost:8080/api/post/update/2
 Content-Type: application/json
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBuYXZlci5jb20iLCJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNzIxMDc0Mjg2LCJleHAiOjE3MjEwNzc4ODZ9.095I5z1Envb2YGHykNFhURCQ2xleAQFk1Ltm3NWMFqs
 
 {
   "category" : "게임",
-  "title" : "제목2",
-  "contents": "내용2"
+  "title" : "제목5",
+  "contents": "내용5"
 }
 
 ###
-DELETE http://localhost:8080/api/post/delete/1
+DELETE http://localhost:8080/api/post/delete/2
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MjEwNzQzMzQsImV4cCI6MTcyMTA3NzkzNH0.xce3KQ390LAVcAo-oxe2YY5onMfmxLMk2CwxA6SZhGA
+
 
 
 // User
@@ -32,8 +35,8 @@ POST http://localhost:8080/api/member/signup
 Content-Type: application/json
 
 {
-  "email": "test@naver.com",
-  "userName": "test",
+  "email": "test2@naver.com",
+  "userName": "test2",
   "password": "1234",
   "passwordConfirm": "1234"
 }
@@ -52,7 +55,7 @@ Content-Type: application/json
 
 {
   "email": "test@naver.com",
-  "password": "12345"
+  "password": "1234"
 }
 
 ###

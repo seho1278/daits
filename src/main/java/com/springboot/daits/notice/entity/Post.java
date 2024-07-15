@@ -1,5 +1,6 @@
 package com.springboot.daits.notice.entity;
 
+import com.springboot.daits.Member.entity.Member;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -36,4 +37,10 @@ public class Post {
 
     @Column
     private LocalDateTime updatedAt;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member")
+    private Member member;
+
+
 }
