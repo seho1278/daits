@@ -1,13 +1,13 @@
-package com.springboot.daits.notice.service.impl;
+package com.springboot.daits.post.service.impl;
 
 import com.springboot.daits.Member.entity.Member;
-import com.springboot.daits.notice.entity.Post;
-import com.springboot.daits.notice.exception.PostNotFoundException;
-import com.springboot.daits.notice.model.PostInput;
-import com.springboot.daits.notice.model.PostResponse;
-import com.springboot.daits.notice.service.PostService;
+import com.springboot.daits.post.entity.Post;
+import com.springboot.daits.post.exception.PostNotFoundException;
+import com.springboot.daits.post.model.PostInput;
+import com.springboot.daits.post.model.PostResponse;
+import com.springboot.daits.post.service.PostService;
 import com.springboot.daits.response.ResponseError;
-import com.springboot.daits.notice.repository.PostRepository;
+import com.springboot.daits.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -88,7 +88,6 @@ public class PostServiceImpl implements PostService {
 
     // 게시글 수정
     @Override
-    @Transactional
     public ResponseEntity<?> updatePost(Long id, PostInput postInput) {
 
         Post post = checkPost(id);

@@ -1,4 +1,4 @@
-package com.springboot.daits.notice.model;
+package com.springboot.daits.post.model;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;

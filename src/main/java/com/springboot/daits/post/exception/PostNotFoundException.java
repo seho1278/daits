@@ -1,4 +1,4 @@
-package com.springboot.daits.notice.exception;
+package com.springboot.daits.post.exception;
 
 public class PostNotFoundException extends RuntimeException {
     public PostNotFoundException(String s) {

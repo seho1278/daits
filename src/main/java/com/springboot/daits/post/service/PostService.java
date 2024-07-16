@@ -1,7 +1,7 @@
-package com.springboot.daits.notice.service;
+package com.springboot.daits.post.service;
 
-import com.springboot.daits.notice.model.PostInput;
-import com.springboot.daits.notice.model.PostResponse;
+import com.springboot.daits.post.model.PostInput;
+import com.springboot.daits.post.model.PostResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 

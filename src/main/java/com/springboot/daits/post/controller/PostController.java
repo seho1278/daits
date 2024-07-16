@@ -1,9 +1,9 @@
-package com.springboot.daits.notice.controller;
+package com.springboot.daits.post.controller;
 
-import com.springboot.daits.notice.model.PostInput;
-import com.springboot.daits.notice.model.PostResponse;
-import com.springboot.daits.notice.repository.PostRepository;
-import com.springboot.daits.notice.service.PostService;
+import com.springboot.daits.post.model.PostInput;
+import com.springboot.daits.post.model.PostResponse;
+import com.springboot.daits.post.repository.PostRepository;
+import com.springboot.daits.post.service.PostService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

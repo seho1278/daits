@@ -1,4 +1,4 @@
-package com.springboot.daits.notice.exception;
+package com.springboot.daits.post.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

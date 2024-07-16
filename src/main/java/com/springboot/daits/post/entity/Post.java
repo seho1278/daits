@@ -1,10 +1,12 @@
-package com.springboot.daits.notice.entity;
+package com.springboot.daits.post.entity;
 
 import com.springboot.daits.Member.entity.Member;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -42,5 +44,7 @@ public class Post {
     @JoinColumn(name = "member")
     private Member member;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
 
 }

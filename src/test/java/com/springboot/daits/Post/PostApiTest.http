@@ -1,0 +1,28 @@
+###
+POST http://localhost:8080/api/post/create
+Content-Type: application/json
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBuYXZlci5jb20iLCJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNzIxMTY2NDY1LCJleHAiOjE3MjExNzAwNjV9.LoaLWMMnFDcIfRVFOqxoq-RVZcFahfamGwsMpGCaVkQ
+
+{
+  "category": "IT",
+  "title": "제목2",
+  "contents": "내용2"
+}
+
+###
+GET http://localhost:8080/api/post/1
+
+###
+PUT http://localhost:8080/api/post/update/1
+Content-Type: application/json
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBuYXZlci5jb20iLCJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNzIxMTYzNzk0LCJleHAiOjE3MjExNjczOTR9.G9ON_ADzDzCpOuqxf8SB_rQeeUPRpEvHbwu0QLZrmcc
+
+{
+  "category" : "게임",
+  "title" : "제목2",
+  "contents": "내용2"
+}
+
+###
+DELETE http://localhost:8080/api/post/delete/2
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MjEwNzQzMzQsImV4cCI6MTcyMTA3NzkzNH0.xce3KQ390LAVcAo-oxe2YY5onMfmxLMk2CwxA6SZhGA

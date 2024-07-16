@@ -63,19 +63,6 @@ public class MemberServiceImpl implements MemberService {
     // 회원가입
     @Override
     public SignUpResultDto signUp(MemberInput memberInput) {
-//        List<ResponseError> responseErrorList = new ArrayList<>();
-//        if (errors.hasErrors()) {
-//            errors.getAllErrors().stream().forEach((e) -> {
-//                responseErrorList.add(ResponseError.of((FieldError) e));
-//            });
-//
-//            return new ResponseEntity<>(responseErrorList, HttpStatus.BAD_REQUEST);
-//        }
-//
-//        if (!memberInput.isPasswordConfirmValid()) {
-//            responseErrorList.add(new ResponseError("passwordConfirm", "비밀번호가 일치하지 않습니다."));
-//            return new ResponseEntity<>(responseErrorList, HttpStatus.BAD_REQUEST);
-//        }
 
         if (!memberInput.isPasswordConfirmValid()) {
             throw new PasswordNotMatchException("비밀번호가 일치하지 않습니다.");

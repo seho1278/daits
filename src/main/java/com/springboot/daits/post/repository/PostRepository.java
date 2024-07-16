@@ -1,10 +1,9 @@
-package com.springboot.daits.notice.repository;
+package com.springboot.daits.post.repository;
 
-import com.springboot.daits.notice.entity.Post;
+import com.springboot.daits.post.entity.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Repository
