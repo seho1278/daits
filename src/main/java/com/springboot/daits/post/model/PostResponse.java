@@ -1,6 +1,6 @@
-package com.springboot.daits.notice.model;
+package com.springboot.daits.post.model;
 
-import com.springboot.daits.notice.entity.Post;
+import com.springboot.daits.post.entity.Post;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

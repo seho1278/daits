@@ -1,0 +1,47 @@
+###
+POST http://localhost:8080/api/member/signup
+Content-Type: application/json
+
+{
+  "email": "test2@naver.com",
+  "userName": "test2",
+  "password": "1234",
+  "passwordConfirm": "1234"
+}
+
+###
+GET http://localhost:8080/api/member
+Content-Type: application/json
+
+{
+  "email": "test@naver.com"
+}
+
+###
+POST http://localhost:8080/api/member/signin
+Content-Type: application/json
+
+{
+  "email": "test2@naver.com",
+  "password": "1234"
+}
+
+###
+PUT http://localhost:8080/api/member/update
+Content-Type: application/json
+
+{
+  "email": "test@naver.com",
+  "userName": "test1"
+}
+
+###
+PATCH http://localhost:8080/api/member/update/password
+Content-Type: application/json
+
+{
+  "email": "test@naver.com",
+  "password": "1234",
+  "newPassword": "12345",
+  "newPasswordConfirm": "12345"
+}

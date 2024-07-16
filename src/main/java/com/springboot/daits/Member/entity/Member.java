@@ -1,7 +1,8 @@
 package com.springboot.daits.Member.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.springboot.daits.notice.entity.Post;
+import com.springboot.daits.post.entity.Comment;
+import com.springboot.daits.post.entity.Post;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -43,9 +44,12 @@ public class Member implements UserDetails {
     @Builder.Default
     private List<String> roles = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "post")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Post> posts = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
+
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Override
