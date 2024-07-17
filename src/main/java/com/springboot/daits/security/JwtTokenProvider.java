@@ -1,6 +1,6 @@
 package com.springboot.daits.security;
 
-import com.springboot.daits.Member.service.MemberService;
+import com.springboot.daits.service.MemberService;
 import io.jsonwebtoken.*;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;

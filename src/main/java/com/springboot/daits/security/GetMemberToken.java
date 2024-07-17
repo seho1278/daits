@@ -1,7 +1,6 @@
 package com.springboot.daits.security;
 
-import com.springboot.daits.Member.entity.Member;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import com.springboot.daits.entity.Member;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
