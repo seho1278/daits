@@ -1,6 +1,9 @@
 package com.springboot.daits.controller;
 
 import com.springboot.daits.model.*;
+import com.springboot.daits.response.MemberResponse;
+import com.springboot.daits.response.SignInResultDto;
+import com.springboot.daits.response.SignUpResultDto;
 import com.springboot.daits.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

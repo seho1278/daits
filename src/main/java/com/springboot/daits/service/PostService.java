@@ -1,7 +1,7 @@
 package com.springboot.daits.service;
 
 import com.springboot.daits.model.PostInput;
-import com.springboot.daits.model.PostResponse;
+import com.springboot.daits.response.PostResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 

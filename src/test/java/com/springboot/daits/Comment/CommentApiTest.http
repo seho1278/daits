@@ -1,0 +1,27 @@
+###
+POST http://localhost:8080/api/comment/1/create
+Content-Type: application/json
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MjEzMzE2NjcsImV4cCI6MTcyMTMzNTI2N30.zrC0mP2yTybpy5ZLdBtPQQxN4SPY2y7EB82djXh3UI0
+
+{
+  "contents": "댓글3"
+}
+
+###
+GET http://localhost:8080/api/comment/1/2
+
+###
+GET http://localhost:8080/api/comment/1
+
+###
+PATCH http://localhost:8080/api/comment/1/2/update
+Content-Type: application/json
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBuYXZlci5jb20iLCJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNzIxMzMxOTA5LCJleHAiOjE3MjEzMzU1MDl9.5aVsU0nI3XHrBRQJIzylN5djXFFpSKmYQA5PNcMkcnU
+
+{
+  "contents": "댓글수정2"
+}
+
+###
+DELETE http://localhost:8080/api/comment/1/3/delete
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBuYXZlci5jb20iLCJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNzIxMzMxOTA5LCJleHAiOjE3MjEzMzU1MDl9.5aVsU0nI3XHrBRQJIzylN5djXFFpSKmYQA5PNcMkcnU

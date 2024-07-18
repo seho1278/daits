@@ -22,9 +22,16 @@ public class SecurityConfig {
 
     public static final String[] PUBLIC_URL = {
             "/",
+            // member
             "/api/member/signup",
             "/api/member/signin",
+
+            // post
             "/api/post/{id}",
+
+            // comment
+            "/api/comment/{post_id}",
+            "/api/comment/{post_id}/{comment_id}",
     };
 
     /**

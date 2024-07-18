@@ -1,7 +1,7 @@
 package com.springboot.daits.controller;
 
 import com.springboot.daits.model.PostInput;
-import com.springboot.daits.model.PostResponse;
+import com.springboot.daits.response.PostResponse;
 import com.springboot.daits.repository.PostRepository;
 import com.springboot.daits.service.PostService;
 import jakarta.validation.Valid;

@@ -27,7 +27,7 @@ public class Comment {
     private LocalDateTime updatedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Posts")
+    @JoinColumn(name = "post_id")
     private Post post;
 
     @ManyToOne(fetch = FetchType.LAZY)
