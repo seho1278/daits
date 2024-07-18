@@ -3,7 +3,7 @@ POST http://localhost:8080/api/member/signup
 Content-Type: application/json
 
 {
-  "email": "test@naver.com",
+  "email": "test2@naver.com",
   "userName": "test",
   "password": "1234",
   "passwordConfirm": "1234"
@@ -44,4 +44,14 @@ Content-Type: application/json
   "password": "1234",
   "newPassword": "12345",
   "newPasswordConfirm": "12345"
+}
+
+###
+DELETE http://localhost:8080/api/member/delete
+Content-Type: application/json
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBuYXZlci5jb20iLCJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNzIxMzMxOTA5LCJleHAiOjE3MjEzMzU1MDl9.5aVsU0nI3XHrBRQJIzylN5djXFFpSKmYQA5PNcMkcnU
+
+{
+  "email": "test2@naver.com",
+  "password": "1234"
 }

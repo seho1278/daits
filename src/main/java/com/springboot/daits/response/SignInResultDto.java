@@ -1,4 +1,4 @@
-package com.springboot.daits.model;
+package com.springboot.daits.response;
 
 import lombok.*;
 

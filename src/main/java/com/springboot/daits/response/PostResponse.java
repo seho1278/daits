@@ -1,4 +1,4 @@
-package com.springboot.daits.model;
+package com.springboot.daits.response;
 
 import com.springboot.daits.entity.Post;
 import lombok.AllArgsConstructor;

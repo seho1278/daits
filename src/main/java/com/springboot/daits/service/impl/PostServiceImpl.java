@@ -3,8 +3,9 @@ package com.springboot.daits.service.impl;
 import com.springboot.daits.entity.Member;
 import com.springboot.daits.entity.Post;
 import com.springboot.daits.exception.PostNotFoundException;
+import com.springboot.daits.exception.UserNotMatchException;
 import com.springboot.daits.model.PostInput;
-import com.springboot.daits.model.PostResponse;
+import com.springboot.daits.response.PostResponse;
 import com.springboot.daits.service.PostService;
 import com.springboot.daits.response.ResponseError;
 import com.springboot.daits.repository.PostRepository;
@@ -93,7 +94,7 @@ public class PostServiceImpl implements PostService {
         Member member = getMemberToken();
 
         if (!post.getMember().getEmail().equals(member.getEmail())) {
-            throw new RuntimeException("작성자 본인만 수정 가능합니다.");
+            throw new UserNotMatchException("작성자 본인만 수정 가능합니다.");
         }
 
         post.setCategory(postInput.getCategory());
@@ -114,7 +115,7 @@ public class PostServiceImpl implements PostService {
         Member member = getMemberToken();
 
         if (!post.getMember().getEmail().equals(member.getEmail())) {
-            throw new RuntimeException("작성자 본인만 삭제가 가능합니다.");
+            throw new UserNotMatchException("작성자 본인만 삭제가 가능합니다.");
         }
 
         postRepository.delete(post);

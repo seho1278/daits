@@ -1,8 +1,0 @@
-###
-POST http://localhost:8080/api/comment/2/create
-Content-Type: application/json
-X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBuYXZlci5jb20iLCJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNzIxMjUxNDA1LCJleHAiOjE3MjEyNTUwMDV9.P8rHrKwcE35Hp4fWA3R7WpZQ2l9zKcQp5QES7NoVilI
-
-{
-  "contents": "댓글2"
-}
