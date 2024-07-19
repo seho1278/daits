@@ -22,7 +22,7 @@ POST http://localhost:8080/api/member/signin
 Content-Type: application/json
 
 {
-  "email": "test2@naver.com",
+  "email": "test@naver.com",
   "password": "1234"
 }
 
