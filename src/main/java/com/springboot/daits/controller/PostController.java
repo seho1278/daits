@@ -46,4 +46,16 @@ public class PostController {
         return postService.deletePost(id);
     }
 
+    // 게시글 추천
+    @PostMapping("/recommend/{id}")
+    public ResponseEntity<?> recommendPost(@PathVariable Long id) {
+        return postService.recommendPost(id);
+    }
+
+    // 게시글 비추천
+    @PostMapping("/notrecommend/{id}")
+    public ResponseEntity<?> notRecommendPost(@PathVariable Long id) {
+        return postService.notRecommendPost(id);
+    }
+
 }

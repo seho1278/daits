@@ -3,6 +3,7 @@ package com.springboot.daits.service.impl;
 import com.springboot.daits.entity.Member;
 import com.springboot.daits.entity.Post;
 import com.springboot.daits.exception.PostNotFoundException;
+import com.springboot.daits.exception.UserNotFoundException;
 import com.springboot.daits.exception.UserNotMatchException;
 import com.springboot.daits.model.PostInput;
 import com.springboot.daits.response.PostResponse;
@@ -123,4 +124,43 @@ public class PostServiceImpl implements PostService {
         return ResponseEntity.ok().build();
     }
 
+    // 게시글 추천
+    @Override
+    public ResponseEntity<?> recommendPost(Long id) {
+        // 게시글 확인
+        Post post = checkPost(id);
+
+        // 본인 확인
+        Member member = getMemberToken();
+        if (member == null) {
+            throw new UserNotFoundException("로그인이 필요합니다.");
+        }
+
+        // 추천수 증가
+        post.setRecommendation(post.getRecommendation() + 1);
+
+        postRepository.save(post);
+
+        return ResponseEntity.ok().build();
+    }
+
+    // 게시글 비추천
+    @Override
+    public ResponseEntity<?> notRecommendPost(Long id) {
+        // 게시글 확인
+        Post post = checkPost(id);
+
+        // 본인확인
+        Member member = getMemberToken();
+        if (member == null) {
+            throw new UserNotFoundException("로그인이 필요합니다");
+        }
+
+        // 추천수 감소
+        post.setRecommendation(post.getRecommendation() - 1);
+
+        postRepository.save(post);
+
+        return ResponseEntity.ok().build();
+    }
 }

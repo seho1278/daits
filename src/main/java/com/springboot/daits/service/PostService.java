@@ -15,4 +15,7 @@ public interface PostService {
 
     ResponseEntity<?> deletePost(Long id);
 
+    ResponseEntity<?> recommendPost(Long id);
+
+    ResponseEntity<?> notRecommendPost(Long id);
 }

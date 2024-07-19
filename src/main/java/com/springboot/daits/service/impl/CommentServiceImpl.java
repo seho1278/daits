@@ -5,6 +5,7 @@ import com.springboot.daits.entity.Comment;
 import com.springboot.daits.entity.Post;
 import com.springboot.daits.exception.CommentNotFoundException;
 import com.springboot.daits.exception.PostNotFoundException;
+import com.springboot.daits.exception.UserNotFoundException;
 import com.springboot.daits.exception.UserNotMatchException;
 import com.springboot.daits.model.CommentInput;
 import com.springboot.daits.repository.CommentRepository;
@@ -41,9 +42,14 @@ public class CommentServiceImpl implements CommentService {
     }
 
 
-    //게시글 체크
+    // 게시글 체크
     public Post checkPost(Long id) {
         return postRepository.findById(id).orElseThrow(() -> new PostNotFoundException("게시글이 존재하지 않습니다."));
+    }
+
+    // 댓글 체크
+    public Comment checkComment(Long id) {
+        return commentRepository.findById(id).orElseThrow(() -> new CommentNotFoundException("댓글이 존재하지 않습니다."));
     }
 
     // 댓글 작성
@@ -147,6 +153,49 @@ public class CommentServiceImpl implements CommentService {
 
         // 삭제
         commentRepository.delete(comment);
+
+        return ResponseEntity.ok().build();
+    }
+
+    // 댓글 추천
+    @Override
+    public ResponseEntity<?> recommendComment(Long post_id, Long comment_id) {
+        // 게시글 확인
+        Post post = checkPost(post_id);
+
+        // 댓글 확인
+        Comment comment = checkComment(comment_id);
+
+        // 본인 확인
+        Member member = getMemberToken();
+        if (member == null) {
+            throw new UserNotFoundException("로그인이 필요합니다.");
+        }
+
+        comment.setRecommendation(comment.getRecommendation() + 1);
+        commentRepository.save(comment);
+
+        return ResponseEntity.ok().build();
+    }
+
+    // 댓글 비추천
+    @Override
+    public ResponseEntity<?> notRecommendComment(Long post_id, Long comment_id) {
+        // 게시글 확인
+        Post post = checkPost(post_id);
+
+        // 댓글 확인
+        Comment comment = checkComment(comment_id);
+
+        // 본인 확인
+        Member member = getMemberToken();
+        if (member == null) {
+            throw new UserNotFoundException("로그인이 필요합니다.");
+        }
+
+        comment.setRecommendation(comment.getRecommendation() - 1);
+
+        commentRepository.save(comment);
 
         return ResponseEntity.ok().build();
     }

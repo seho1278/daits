@@ -46,5 +46,18 @@ public class CommentController {
         return commentService.deleteComment(post_id, comment_id);
     }
 
+    // 댓글 추천
+    @PostMapping("/recommend/{post_id}/{comment_id}")
+    public ResponseEntity<?> recommendComment(@PathVariable Long post_id, @PathVariable Long comment_id) {
+        return commentService.recommendComment(post_id, comment_id);
+    }
+
+    // 댓글 비추천
+    @PostMapping("/notrecommend/{post_id}/{comment_id}")
+    public ResponseEntity<?> notRecommendComment(@PathVariable Long post_id, @PathVariable Long comment_id) {
+        return commentService.notRecommendComment(post_id, comment_id);
+    }
+
+
 
 }

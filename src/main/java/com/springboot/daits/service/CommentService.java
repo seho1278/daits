@@ -18,4 +18,8 @@ public interface CommentService {
 
     ResponseEntity<?> deleteComment(Long post_id, Long comment_id);
 
+    ResponseEntity<?> recommendComment(Long post_id, Long comment_id);
+
+    ResponseEntity<?> notRecommendComment(Long post_id, Long comment_id);
+
 }
