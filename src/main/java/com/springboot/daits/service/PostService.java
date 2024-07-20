@@ -5,6 +5,8 @@ import com.springboot.daits.response.PostResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 
+import java.util.List;
+
 public interface PostService {
 
     ResponseEntity<?> createPost(PostInput postInput, Errors errors);
@@ -18,4 +20,6 @@ public interface PostService {
     ResponseEntity<?> recommendPost(Long id);
 
     ResponseEntity<?> notRecommendPost(Long id);
+
+    List<PostResponse> searchPost(String keyword, String type);
 }

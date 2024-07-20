@@ -2,6 +2,7 @@ package com.springboot.daits.service.impl;
 
 import com.springboot.daits.entity.Member;
 import com.springboot.daits.entity.Post;
+import com.springboot.daits.entity.specification.PostSpecifications;
 import com.springboot.daits.exception.PostNotFoundException;
 import com.springboot.daits.exception.UserNotFoundException;
 import com.springboot.daits.exception.UserNotMatchException;
@@ -11,6 +12,7 @@ import com.springboot.daits.service.PostService;
 import com.springboot.daits.response.ResponseError;
 import com.springboot.daits.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -22,6 +24,7 @@ import org.springframework.validation.FieldError;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -162,5 +165,27 @@ public class PostServiceImpl implements PostService {
         postRepository.save(post);
 
         return ResponseEntity.ok().build();
+    }
+
+    // 특정 게시글 검색
+    @Override
+    public List<PostResponse> searchPost(String keyword, String type) {
+        Specification<Post> spec = null;
+
+        switch (type) {
+            case "title":
+                spec = PostSpecifications.hasTitle(keyword);
+                break;
+            case "contents":
+                spec = PostSpecifications.hasContents(keyword);
+            case "username":
+                spec = PostSpecifications.hasUserName(keyword);
+            case "titleOrContents":
+                spec = PostSpecifications.hasTitleOrContents(keyword);
+        }
+
+        List<Post> posts = postRepository.findAll(spec);
+
+        return posts.stream().map(PostResponse::of).collect(Collectors.toList());
     }
 }

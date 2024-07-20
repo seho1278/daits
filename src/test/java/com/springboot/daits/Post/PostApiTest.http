@@ -1,12 +1,12 @@
 ###
 POST http://localhost:8080/api/post/create
 Content-Type: application/json
-X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MjEzMzE2NjcsImV4cCI6MTcyMTMzNTI2N30.zrC0mP2yTybpy5ZLdBtPQQxN4SPY2y7EB82djXh3UI0
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MjE0NjI3NzgsImV4cCI6MTcyMTQ2NjM3OH0.xUoabWJwBM9UkbNq7Vb0X4e0Y5dknk15jOLYAfu_DZQ
 
 {
-  "category": "IT",
-  "title": "제목1",
-  "contents": "내용1"
+  "category": "해외축구",
+  "title": "레알마드리드",
+  "contents": "벨링엄"
 }
 
 ###
@@ -34,3 +34,6 @@ X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGVzIjpbI
 ###
 POST http://localhost:8080/api/post/notRecommend/1
 X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MjEzNzcwOTksImV4cCI6MTcyMTM4MDY5OX0.mUekgoeVAYTa-ljd2mN128PMDCa_4bYd7ftcblWu2Cc
+
+###
+GET http://localhost:8080/api/post/search?keyword=test&type=member

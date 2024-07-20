@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/post")
@@ -56,6 +58,13 @@ public class PostController {
     @PostMapping("/notrecommend/{id}")
     public ResponseEntity<?> notRecommendPost(@PathVariable Long id) {
         return postService.notRecommendPost(id);
+    }
+
+    // 게시글 검색
+    @GetMapping("/search")
+    public List<PostResponse> searchPost(@RequestParam String keyword, @RequestParam String type) {
+
+        return postService.searchPost(keyword, type);
     }
 
 }

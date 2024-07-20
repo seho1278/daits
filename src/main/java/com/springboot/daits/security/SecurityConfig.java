@@ -28,6 +28,7 @@ public class SecurityConfig {
 
             // post
             "/api/post/{id}",
+            "/api/post/search",
 
             // comment
             "/api/comment/{post_id}",
