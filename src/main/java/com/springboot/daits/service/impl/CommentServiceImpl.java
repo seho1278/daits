@@ -121,8 +121,11 @@ public class CommentServiceImpl implements CommentService {
 
         // 본인확인
         Member member = getMemberToken();
-        if (member == null || !comment.getMember().getEmail().equals(member.getEmail())) {
-            throw new UserNotMatchException("작성자 본인만 수정이 가능합니다.");
+
+        if (!member.getRoles().contains("ROLE_ADMIN")) {
+            if (member == null || !comment.getMember().getEmail().equals(member.getEmail())) {
+                throw new UserNotMatchException("작성자 본인만 수정이 가능합니다.");
+            }
         }
 
         comment.setContents(commentInput.getContents());
@@ -146,10 +149,11 @@ public class CommentServiceImpl implements CommentService {
         // 본인확인
         Member member = getMemberToken();
 
-        if (member == null || !comment.getMember().getEmail().equals(member.getEmail())) {
-            throw new UserNotMatchException("작성자 본인만 삭제가 가능합니다.");
+        if (!member.getRoles().contains("ROLE_ADMIN")) {
+            if (member == null || !comment.getMember().getEmail().equals(member.getEmail())) {
+                throw new UserNotMatchException("작성자 본인만 삭제가 가능합니다.");
+            }
         }
-
 
         // 삭제
         commentRepository.delete(comment);

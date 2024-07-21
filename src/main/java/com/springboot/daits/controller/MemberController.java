@@ -23,18 +23,18 @@ public class MemberController {
 
     // 회원 가입
     @PostMapping("/signup")
-    public SignUpResultDto signUp(@RequestBody @Valid MemberInput memberInput) {
+    public SignUpResultDto signUp(@RequestBody @Valid MemberSignUpInput memberSignUpInput) {
         LOGGER.info("[signUp] 회원가입을 수행합니다. email : {}, password : ****, userName : {}, role : {}",
-                memberInput.getEmail(), memberInput.getUserName(), memberInput.getRoles());
-        SignUpResultDto signUpResultDto = memberService.signUp(memberInput);
-        LOGGER.info("[signUp] 회원가입을 완료했습니다. email : {}", memberInput.getEmail());
+                memberSignUpInput.getEmail(), memberSignUpInput.getUserName(), memberSignUpInput.getRoles());
+        SignUpResultDto signUpResultDto = memberService.signUp(memberSignUpInput);
+        LOGGER.info("[signUp] 회원가입을 완료했습니다. email : {}", memberSignUpInput.getEmail());
 
         return signUpResultDto;
     }
 
     // 유저 정보 조회
     @GetMapping("")
-    public MemberResponse getUser(@RequestBody String email) {
+    public MemberResponse getUser(@RequestParam String email) {
 
         return memberService.getUser(email);
     }
@@ -75,8 +75,8 @@ public class MemberController {
 
     // 회원탈퇴
     @DeleteMapping("/delete")
-    public ResponseEntity<?> deleteUser(@RequestBody @Valid MemberInput memberInput) {
+    public ResponseEntity<?> deleteUser(@RequestBody @Valid MemberDeleteInput memberDeleteInput) {
 
-        return memberService.deleteUser(memberInput);
+        return memberService.deleteUser(memberDeleteInput);
     }
 }
