@@ -9,14 +9,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class MemberInput {
+public class MemberSignUpInput {
 
     @Email(message = "이메일 형식에 맞게 작성해 주세요")
     @NotBlank(message = "이메일을 입력해 주세요")
@@ -32,7 +29,7 @@ public class MemberInput {
     @NotBlank(message = "비밀번호 확인을 위해 비밀번호를 입력해 주세요")
     private String passwordConfirm;
 
-    private List<String> roles = new ArrayList<>();
+    private String roles;
 
     @AssertTrue(message = "비밀번호가 일치하지 않습니다.")
     public boolean isPasswordConfirmValid() {

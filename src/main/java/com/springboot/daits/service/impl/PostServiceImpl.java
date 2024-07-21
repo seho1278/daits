@@ -97,8 +97,10 @@ public class PostServiceImpl implements PostService {
         Post post = checkPost(id);
         Member member = getMemberToken();
 
-        if (!post.getMember().getEmail().equals(member.getEmail())) {
-            throw new UserNotMatchException("작성자 본인만 수정 가능합니다.");
+        if (!member.getRoles().contains("ROLE_ADMIN")) {
+            if (!post.getMember().getEmail().equals(member.getEmail())) {
+                throw new UserNotMatchException("작성자 본인만 수정 가능합니다.");
+            }
         }
 
         post.setCategory(postInput.getCategory());
@@ -118,8 +120,10 @@ public class PostServiceImpl implements PostService {
         Post post = checkPost(id);
         Member member = getMemberToken();
 
-        if (!post.getMember().getEmail().equals(member.getEmail())) {
-            throw new UserNotMatchException("작성자 본인만 삭제가 가능합니다.");
+        if (!member.getRoles().contains("ROLE_ADMIN")) {
+            if (!post.getMember().getEmail().equals(member.getEmail())) {
+                throw new UserNotMatchException("작성자 본인만 삭제가 가능합니다.");
+            }
         }
 
         postRepository.delete(post);

@@ -3,19 +3,16 @@ POST http://localhost:8080/api/member/signup
 Content-Type: application/json
 
 {
-  "email": "test2@naver.com",
-  "userName": "test",
+  "email": "test5@naver.com",
+  "userName": "test2",
   "password": "1234",
-  "passwordConfirm": "1234"
+  "passwordConfirm": "1234",
+  "roles": ""
 }
 
 ###
-GET http://localhost:8080/api/member
-Content-Type: application/json
+GET http://localhost:8080/api/member?email=test@naver.com
 
-{
-  "email": "test@naver.com"
-}
 
 ###
 POST http://localhost:8080/api/member/signin
@@ -29,15 +26,17 @@ Content-Type: application/json
 ###
 PUT http://localhost:8080/api/member/update
 Content-Type: application/json
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MjE1MjUzMjEsImV4cCI6MTcyMTUyODkyMX0.F6s13fBB6hJKFXjzmELhWs07QMJ8gwHPMEEUgByMMLs
 
 {
   "email": "test@naver.com",
-  "userName": "test1"
+  "userName": "test55"
 }
 
 ###
 PATCH http://localhost:8080/api/member/update/password
 Content-Type: application/json
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MjE1MjUzMjEsImV4cCI6MTcyMTUyODkyMX0.F6s13fBB6hJKFXjzmELhWs07QMJ8gwHPMEEUgByMMLs
 
 {
   "email": "test@naver.com",
@@ -49,9 +48,9 @@ Content-Type: application/json
 ###
 DELETE http://localhost:8080/api/member/delete
 Content-Type: application/json
-X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBuYXZlci5jb20iLCJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNzIxMzMxOTA5LCJleHAiOjE3MjEzMzU1MDl9.5aVsU0nI3XHrBRQJIzylN5djXFFpSKmYQA5PNcMkcnU
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0NUBuYXZlci5jb20iLCJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNzIxNTIxODU5LCJleHAiOjE3MjE1MjU0NTl9.oyEUBJpndwHobYLFeZt2RUnywtV2BLJRnKKoY088Yi4
 
 {
-  "email": "test2@naver.com",
-  "password": "1234"
+  "email": "test5@naver.com",
+  "password": "12345"
 }

@@ -18,6 +18,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -42,6 +44,14 @@ public class MemberServiceImpl implements MemberService {
         this.jwtTokenProvider = jwtTokenProvider;
     }
 
+    // 인증된 사용자 Authentication 객체 가져오기
+    public Member getMemberToken() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Member member = (Member) authentication.getPrincipal();
+
+        return member;
+    }
+
     // 유저 여부 확인
     public Member checkUser(String email) {
         Member member = memberRepository.findByEmail(email)
@@ -53,7 +63,10 @@ public class MemberServiceImpl implements MemberService {
     // 유저 정보 조회
     @Override
     public MemberResponse getUser(String email) {
+        LOGGER.info("[getUser] 유저 정보 확인 {}", email);
         Member member = checkUser(email);
+        LOGGER.info("[getUser] 유저 정보 확인완료 email : {}, username : {}", member.getEmail(), member.getUsername());
+
 
         MemberResponse memberResponse = MemberResponse.of(member);
 
@@ -62,9 +75,9 @@ public class MemberServiceImpl implements MemberService {
 
     // 회원가입
     @Override
-    public SignUpResultDto signUp(MemberInput memberInput) {
+    public SignUpResultDto signUp(MemberSignUpInput memberSignUpInput) {
 
-        if (!memberInput.isPasswordConfirmValid()) {
+        if (!memberSignUpInput.isPasswordConfirmValid()) {
             throw new PasswordNotMatchException("비밀번호가 일치하지 않습니다.");
         }
 
@@ -73,20 +86,20 @@ public class MemberServiceImpl implements MemberService {
         Member member;
 
         // password 암호화
-        String encryptPassword = PasswordUtil.getEncryptPassword(memberInput.getPassword());
+        String encryptPassword = PasswordUtil.getEncryptPassword(memberSignUpInput.getPassword());
 
-        if (memberInput.getRoles().equals("admin")) {
+        if (memberSignUpInput.getRoles().equals("admin")) {
             member = Member.builder()
-                    .email(memberInput.getEmail())
-                    .userName(memberInput.getUserName())
+                    .email(memberSignUpInput.getEmail())
+                    .userName(memberSignUpInput.getUserName())
                     .password(encryptPassword)
                     .roles(Collections.singletonList("ROLE_ADMIN"))
                     .createdAt(LocalDateTime.now())
                     .build();
         } else {
             member = Member.builder()
-                    .email(memberInput.getEmail())
-                    .userName(memberInput.getUserName())
+                    .email(memberSignUpInput.getEmail())
+                    .userName(memberSignUpInput.getUserName())
                     .password(encryptPassword)
                     .roles(Collections.singletonList("ROLE_USER"))
                     .createdAt(LocalDateTime.now())
@@ -151,12 +164,23 @@ public class MemberServiceImpl implements MemberService {
     // 회원정보 수정
     @Override
     public ResponseEntity<?> updateUser(MemberUpdateInput memberUpdateInput) {
+
+        Member authMember = getMemberToken();
+
         Member member = checkUser(memberUpdateInput.getEmail());
+
+        // 본인확인
+        if (!authMember.getRoles().contains("ROLE_ADMIN")) {
+            if (authMember == null || !authMember.getEmail().equals(member.getEmail())) {
+                throw new UserNotFoundException("계정 본인만 변경이 가능합니다.");
+            }
+        }
+
         member.setUserName(memberUpdateInput.getUserName());
 
         memberRepository.save(member);
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body("프로필이 업데이트 되었습니다.");
     }
 
     // 비밀번호 변경
@@ -176,6 +200,14 @@ public class MemberServiceImpl implements MemberService {
         // 유저 정보가 있는지 확인
         Member member = checkUser(memberInputPassword.getEmail());
 
+        // 본인 인증
+        Member authMember = getMemberToken();
+        if (!authMember.getRoles().contains("ROLE_ADMIN")) {
+            if (authMember == null || !authMember.getEmail().equals(member.getEmail())) {
+                throw new UserNotFoundException("계정 본인만 변경이 가능합니다.");
+            }
+        }
+
         // 입력한 비밀번호와 암호화된 비밀번호가 매칭되는지 확인
         if (!PasswordUtil.equalsPassword(memberInputPassword.getPassword(), member.getPassword())) {
             throw new PasswordNotMatchException("비밀번호가 일치하지 않습니다.");
@@ -192,14 +224,26 @@ public class MemberServiceImpl implements MemberService {
         member.setPassword(encryptPassword);
         memberRepository.save(member);
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body("비밀번호 변경이 완료되었습니다.");
     }
 
 
     // 회원탈퇴
     @Override
-    public ResponseEntity<?> deleteUser(MemberInput memberInput) {
-        Member member = checkUser(memberInput.getEmail());
+    public ResponseEntity<?> deleteUser(MemberDeleteInput memberDeleteInput) {
+        Member member = checkUser(memberDeleteInput.getEmail());
+
+        // 본인 인증
+        Member authMember = getMemberToken();
+        if (!authMember.getRoles().contains("ROLE_ADMIN")) {
+            if (authMember == null || !authMember.getEmail().equals(member.getEmail())) {
+                throw new UserNotFoundException("계정 본인만 삭제가 가능합니다.");
+            }
+        }
+
+        if (!PasswordUtil.equalsPassword(memberDeleteInput.getPassword(), member.getPassword())) {
+            throw new PasswordNotMatchException("비밀번호가 일치하지 않습니다.");
+        }
 
         memberRepository.delete(member);
 

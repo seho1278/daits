@@ -16,7 +16,7 @@ public interface MemberService extends UserDetailsService {
 
         MemberResponse getUser(String email);
 
-        SignUpResultDto signUp(MemberInput memberInput);
+        SignUpResultDto signUp(MemberSignUpInput memberSignUpInput);
 
         SignInResultDto signIn(MemberLoginInput memberLoginInput);
 
@@ -24,6 +24,6 @@ public interface MemberService extends UserDetailsService {
 
         ResponseEntity<?> updateUserPassword(MemberInputPassword memberInputPassword, Errors errors);
 
-        ResponseEntity<?> deleteUser(MemberInput memberInput);
+        ResponseEntity<?> deleteUser(MemberDeleteInput memberDeleteInput);
 
 }

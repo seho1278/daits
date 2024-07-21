@@ -1,39 +1,39 @@
 ###
 POST http://localhost:8080/api/post/create
 Content-Type: application/json
-X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MjE0NjI3NzgsImV4cCI6MTcyMTQ2NjM3OH0.xUoabWJwBM9UkbNq7Vb0X4e0Y5dknk15jOLYAfu_DZQ
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MjE1MjUzMjEsImV4cCI6MTcyMTUyODkyMX0.F6s13fBB6hJKFXjzmELhWs07QMJ8gwHPMEEUgByMMLs
 
 {
-  "category": "해외축구",
-  "title": "레알마드리드",
-  "contents": "벨링엄"
+  "category": "IT",
+  "title": "제목테스트2",
+  "contents": "내용테스트2"
 }
 
 ###
-GET http://localhost:8080/api/post/1
+GET http://localhost:8080/api/post/6
 
 ###
-PUT http://localhost:8080/api/post/update/1
+PUT http://localhost:8080/api/post/update/6
 Content-Type: application/json
-X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MjEzMzE2NjcsImV4cCI6MTcyMTMzNTI2N30.zrC0mP2yTybpy5ZLdBtPQQxN4SPY2y7EB82djXh3UI0
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0NUBuYXZlci5jb20iLCJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNzIxNTIxODU5LCJleHAiOjE3MjE1MjU0NTl9.oyEUBJpndwHobYLFeZt2RUnywtV2BLJRnKKoY088Yi4
 
 {
   "category" : "게임",
-  "title" : "제목2",
-  "contents": "내용2"
+  "title" : "제목수정테스트1",
+  "contents": "내용수정테스트1"
 }
 
 ###
-DELETE http://localhost:8080/api/post/delete/3
-X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBuYXZlci5jb20iLCJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNzIxMjUxNDA1LCJleHAiOjE3MjEyNTUwMDV9.P8rHrKwcE35Hp4fWA3R7WpZQ2l9zKcQp5QES7NoVilI
+DELETE http://localhost:8080/api/post/delete/6
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0NUBuYXZlci5jb20iLCJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNzIxNTIxODU5LCJleHAiOjE3MjE1MjU0NTl9.oyEUBJpndwHobYLFeZt2RUnywtV2BLJRnKKoY088Yi4
 
 ###
-POST http://localhost:8080/api/post/recommend/1
-X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MjEzNzcwOTksImV4cCI6MTcyMTM4MDY5OX0.mUekgoeVAYTa-ljd2mN128PMDCa_4bYd7ftcblWu2Cd
+POST http://localhost:8080/api/post/recommend/6
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0NUBuYXZlci5jb20iLCJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNzIxNTIxODU5LCJleHAiOjE3MjE1MjU0NTl9.oyEUBJpndwHobYLFeZt2RUnywtV2BLJRnKKoY088Yi4
 
 ###
-POST http://localhost:8080/api/post/notRecommend/1
-X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MjEzNzcwOTksImV4cCI6MTcyMTM4MDY5OX0.mUekgoeVAYTa-ljd2mN128PMDCa_4bYd7ftcblWu2Cc
+POST http://localhost:8080/api/post/notrecommend/6
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0NUBuYXZlci5jb20iLCJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNzIxNTIxODU5LCJleHAiOjE3MjE1MjU0NTl9.oyEUBJpndwHobYLFeZt2RUnywtV2BLJRnKKoY088Yi4
 
 ###
-GET http://localhost:8080/api/post/search?keyword=test&type=member
+GET http://localhost:8080/api/post/search?keyword=내용테스트&type=titleOrContents
