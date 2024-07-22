@@ -1,22 +1,22 @@
 ###
-POST http://localhost:8080/api/comment/1/create
+POST http://localhost:8080/api/comment/create/1
 Content-Type: application/json
-X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MjEzMzE2NjcsImV4cCI6MTcyMTMzNTI2N30.zrC0mP2yTybpy5ZLdBtPQQxN4SPY2y7EB82djXh3UI0
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MjE2MjMyNzAsImV4cCI6MTcyMTYyNjg3MH0.eidYBX347UXj3IcYzkkiMMWV-gwalGTFJloUVMp0ssQ
 
 {
-  "contents": "댓글3"
+  "contents": "댓글4"
 }
 
 ###
-GET http://localhost:8080/api/comment/1/2
+GET http://localhost:8080/api/comment/1/3
 
 ###
 GET http://localhost:8080/api/comment/1
 
 ###
-PATCH http://localhost:8080/api/comment/1/2/update
+PATCH http://localhost:8080/api/comment/update/1/3
 Content-Type: application/json
-X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBuYXZlci5jb20iLCJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNzIxMzMxOTA5LCJleHAiOjE3MjEzMzU1MDl9.5aVsU0nI3XHrBRQJIzylN5djXFFpSKmYQA5PNcMkcnU
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MjE2MjMyNzAsImV4cCI6MTcyMTYyNjg3MH0.eidYBX347UXj3IcYzkkiMMWV-gwalGTFJloUVMp0ssQ
 
 {
   "contents": "댓글수정2"
@@ -24,4 +24,8 @@ X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBuYXZlci5jb20iLCJyb2xlcyI6W
 
 ###
 DELETE http://localhost:8080/api/comment/1/3/delete
-X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBuYXZlci5jb20iLCJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNzIxMzMxOTA5LCJleHAiOjE3MjEzMzU1MDl9.5aVsU0nI3XHrBRQJIzylN5djXFFpSKmYQA5PNcMkcnU
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MjE2MjE3MTksImV4cCI6MTcyMTYyNTMxOX0.MdsohuLr0OWKY7TGEbPScapFPpFS8cJN2RxzSRb6o-c
+
+###
+POST http://localhost:8080/api/comment/recommend/1/3
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MjE2MjMyNzAsImV4cCI6MTcyMTYyNjg3MH0.eidYBX347UXj3IcYzkkiMMWV-gwalGTFJloUVMp0ssQ

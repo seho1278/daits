@@ -17,7 +17,7 @@ public class CommentController {
     private final CommentService commentService;
 
     // 게시글 생성
-    @PostMapping("/{post_id}/create")
+    @PostMapping("/create/{post_id}")
     public ResponseEntity<?> createComment(@PathVariable Long post_id, @RequestBody CommentInput commentInput) {
         return commentService.createComment(post_id, commentInput);
     }
@@ -35,13 +35,13 @@ public class CommentController {
     }
 
     // 댓글 수정
-    @PatchMapping("/{post_id}/{comment_id}/update")
+    @PatchMapping("/update/{post_id}/{comment_id}")
     public ResponseEntity<?> updateComment(@PathVariable Long post_id, @PathVariable Long comment_id, @RequestBody CommentInput commentInput) {
         return commentService.updateComment(post_id, comment_id, commentInput);
     }
 
     // 댓글 삭제
-    @DeleteMapping("/{post_id}/{comment_id}/delete")
+    @DeleteMapping("/delete/{post_id}/{comment_id}")
     public ResponseEntity<?> deleteComment(@PathVariable Long post_id, @PathVariable Long comment_id) {
         return commentService.deleteComment(post_id, comment_id);
     }
