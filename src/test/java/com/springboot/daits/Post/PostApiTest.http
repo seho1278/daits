@@ -1,7 +1,7 @@
 ###
 POST http://localhost:8080/api/post/create
 Content-Type: application/json
-X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MjE1MjUzMjEsImV4cCI6MTcyMTUyODkyMX0.F6s13fBB6hJKFXjzmELhWs07QMJ8gwHPMEEUgByMMLs
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MjE2MjE3MTksImV4cCI6MTcyMTYyNTMxOX0.MdsohuLr0OWKY7TGEbPScapFPpFS8cJN2RxzSRb6o-c
 
 {
   "category": "IT",
@@ -10,12 +10,12 @@ X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGVzIjpbI
 }
 
 ###
-GET http://localhost:8080/api/post/6
+GET http://localhost:8080/api/post/1
 
 ###
-PUT http://localhost:8080/api/post/update/6
+PUT http://localhost:8080/api/post/update/1
 Content-Type: application/json
-X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0NUBuYXZlci5jb20iLCJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNzIxNTIxODU5LCJleHAiOjE3MjE1MjU0NTl9.oyEUBJpndwHobYLFeZt2RUnywtV2BLJRnKKoY088Yi4
+X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QG5hdmVyLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE3MjE2MjE3MTksImV4cCI6MTcyMTYyNTMxOX0.MdsohuLr0OWKY7TGEbPScapFPpFS8cJN2RxzSRb6o-c
 
 {
   "category" : "게임",
@@ -36,4 +36,4 @@ POST http://localhost:8080/api/post/notrecommend/6
 X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0NUBuYXZlci5jb20iLCJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNzIxNTIxODU5LCJleHAiOjE3MjE1MjU0NTl9.oyEUBJpndwHobYLFeZt2RUnywtV2BLJRnKKoY088Yi4
 
 ###
-GET http://localhost:8080/api/post/search?keyword=내용테스트&type=titleOrContents
+GET http://localhost:8080/api/post/search?keyword=test55&type=email
